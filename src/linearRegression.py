@@ -1,8 +1,3 @@
-################## ASSIGNMENT 1- LINEAR REGRESSION  ##################
-################## Amtul Nazneen  ##################
-################## AXN180041 ########################
-################## axn180041@utdallas.edu ##################
-
 #Imports
 import numpy as np
 import matplotlib.pyplot as plt
@@ -39,8 +34,7 @@ plt.scatter(X_val, y_val, 12, marker='o', color='green')
 plt.scatter(X_tst, y_tst, 12, marker='o', color='blue')
 plt.show()
 
-################# 1. REGRESSION WITH POLYNOMIAL BASIS FUNCTIONS (30 POINTS) #################
-##### a. axn180041 #####
+################# 1. REGRESSION WITH POLYNOMIAL BASIS FUNCTIONS #################
 def polynomial_transform(X, d):
     out_mat = []
     for i in range(len(X)):
@@ -51,12 +45,10 @@ def polynomial_transform(X, d):
         vander_mat = np.flip(np.array(out_mat),axis=1)
     return vander_mat
 
-##### b. axn180041 #####
 def train_model(Phi, y):
     w = np.linalg.inv((Phi.T)@Phi)@(Phi.T)@y
     return w
 
-##### c. axn180041 #####
 def evaluate_model(Phi, y, w):
     ylen = len(y)
     total = np.sum(np.power(np.subtract(y,Phi@w),2))
@@ -96,7 +88,7 @@ plt.legend(['true'] + list(range(9, 25, 3)))
 plt.axis([-8, 8, -15, 15])
 plt.show()
 
-################# Discussion: axn180041 #################
+################# Discussion #################
 #The goal of using Linear regression algorithm is to find the best fit line using Least Square method.
 # Here, we're calculating the Mean squared Error. If MSE=1 (based on the graph), then it is right to predict the next value.
 # Also, we have plotted error against polynomial degree.
@@ -104,8 +96,7 @@ plt.show()
 # Thus, For all the n training points, we finally calculate the difference between the 'estimated values' and 'original values'
 # Highest MSE is considered better and in the graph when degree is 18, error is minimum
 
-################# 2. REGRESSION WITH RADIAL BASIS FUNCTIONS[70 POINTS] #################
-##### a. axn180041 #####
+################# 2. REGRESSION WITH RADIAL BASIS FUNCTIONS#################
 def radial_basis_transform(X, B, gamma=0.1):
     out_mat=[]
     for i in range(len(X)):
@@ -116,7 +107,7 @@ def radial_basis_transform(X, B, gamma=0.1):
         out_mat.append(in_mat)
     return np.exp(out_mat)
 
-##### b. axn180041 #####
+
 def train_ridge_model(Phi, y, lam):
     a=np.dot(Phi.transpose(),Phi)
     b=(lam*np.identity(len(Phi.transpose())))
@@ -124,7 +115,7 @@ def train_ridge_model(Phi, y, lam):
     final=np.linalg.inv(c)
     return np.dot(final,np.dot(Phi.transpose(),y))
 
-##### c. axn180041 #####
+
 w={}
 validationErr={}
 testErr={}
@@ -146,7 +137,7 @@ plt.xticks(list(validationErr.keys()), fontsize=12)
 plt.legend(['Validation Error', 'Test Error'], fontsize=16)
 plt.xscale("log")
 plt.show()
-##### d. axn180041 #####
+
 plt.figure()
 plt.plot(x_true, y_true, marker='None', linewidth=5, color='k')
 lam=((10)**(-3))
@@ -161,7 +152,7 @@ plt.legend(['true'] + list2)
 plt.axis([-8, 8, -15, 15])
 plt.show()
 
-##### d. axn180041- Discussion #####
+##### Discussion #####
 # Our goal is to determine how the Linearity of the model changes with Lambda
 # When we don't have more training samples, regularization is used
 # So, here we have added the weight Lambda and added it to the previous polynomial
